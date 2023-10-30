@@ -31,13 +31,9 @@ cd squirrelers-bot
 pnpm i
 ```
 
-4. Create a mongo uri
-**4.1** Create a new cluster on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-**4.2** - Create a new database user
-**4.3** - Whitelist your IP address
-**4.5** - Copy the connection string
-5. Create a new application on [Discord Developer Portal](https://discord.com/developers/applications)
-**5.1** - Copy the bot token
+4. Create a new cluster on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and copy the connection string.
+
+5. Create a new application on [Discord Developer Portal](https://discord.com/developers/applications) and copy the bot token.
 
 6. Edit `.env` file (see below)
 
