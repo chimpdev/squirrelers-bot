@@ -44,6 +44,11 @@ pnpm i
 pnpm start
 ```
 
+8. (optional) Register commands to Discord
+```bash
+pnpm register:commands
+```
+
 ## `.env` file
 
 This bot uses `.env` file to store sensitive data. You can create `.env` file in the root directory of the project and add the following variables to it.
