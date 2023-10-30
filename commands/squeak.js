@@ -4,8 +4,7 @@ import random_squirrel_buffer from '../utils/random_squirrel_buffer.js';
 export default {
   data: {
     name: 'squeak',
-    description: 'Squeak!',
-    options: []
+    description: 'Squeak!'
   },
   execute: async interaction => {
     await interaction.deferReply();
