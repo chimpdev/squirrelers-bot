@@ -1,5 +1,7 @@
 ![Header](https://socialify.git.ci/chimpdev/squirrelers-bot/image?description=1&font=Jost&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&stargazers=1&theme=Light)
 
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/WRxRH5?referralCode=CiLNRs)
+
 ## 🔗 Invite
 
 Go to [this link](https://discord.com/api/oauth2/authorize?client_id=1160905184663314532&permissions=34816&scope=bot) and add the bot to your server.
