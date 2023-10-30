@@ -1,0 +1,27 @@
+{
+  "name": "squirrelers",
+  "version": "1.0.0",
+  "description": "A Discord bot for squirrel lovers.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "register:commands": "node index.js --register-commands"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cron": "^3.1.6",
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2",
+    "quickmongo": "^5.2.0",
+    "wait": "^0.4.2",
+    "winston": "^3.11.0"
+  },
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
