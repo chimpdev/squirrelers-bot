@@ -4,12 +4,12 @@ import dotenv from 'dotenv';
 import { Database } from "quickmongo";
 import logger from './utils/logger.js';
 import random_squirrel_buffer from './utils/random_squirrel_buffer.js';
-import client from './client.js';
+import startClient from './client.js';
 
 dotenv.config();
 global.logger = logger;
 
-client()
+startClient()
 
 const database = new Database(process.env.MONGO_URI);
 database.connect().then(() => {
