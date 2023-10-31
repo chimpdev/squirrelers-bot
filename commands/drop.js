@@ -7,8 +7,6 @@ export default {
     .addChannelOption(option => option.setName('channel').setDescription('The channel to drop squirrel pictures in. Leave blank to disable dropping squirrel pictures.'))
     .toJSON(),
   execute: async interaction => {
-    if (database === 'NotReady') return interaction.reply({ content: 'Try again later.' });
-
     await interaction.deferReply();
 
     try {
