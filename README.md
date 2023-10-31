@@ -20,7 +20,7 @@ We are hosting Squirrelers bot on our own servers. Bot will be online 24/7. If y
 
 1. Clone the repository
 ```bash
-git clone
+git clone https://github.com/chimpdev/squirrelers-bot.git
 ```
 
 2. Go to the project directory
