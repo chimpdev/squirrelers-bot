@@ -30,4 +30,5 @@ export default function () {
   });
 
   client.login(process.env.BOT_TOKEN).catch(err => logger.error(err));
+  global.client = client;
 }
