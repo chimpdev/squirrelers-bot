@@ -1,11 +1,11 @@
-import dotenv from 'dotenv';
+import { CronJob } from 'cron';
 import Discord from 'discord.js';
-import logger from './utils/logger.js';
-import squeakCommand from './commands/squeak.js';
-import dropCommand from './commands/drop.js';
+import dotenv from 'dotenv';
 import { Database } from "quickmongo";
 import wait from 'wait';
-import { CronJob } from 'cron';
+import dropCommand from './commands/drop.js';
+import squeakCommand from './commands/squeak.js';
+import logger from './utils/logger.js';
 import random_squirrel_buffer from './utils/random_squirrel_buffer.js';
 
 dotenv.config();
