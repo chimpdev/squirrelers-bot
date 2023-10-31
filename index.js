@@ -2,7 +2,6 @@ import { CronJob } from 'cron';
 import Discord from 'discord.js';
 import dotenv from 'dotenv';
 import { Database } from "quickmongo";
-import wait from 'wait';
 import dropCommand from './commands/drop.js';
 import squeakCommand from './commands/squeak.js';
 import logger from './utils/logger.js';
@@ -45,6 +44,8 @@ database.connect().then(() => {
 }).catch(err => logger.error(err));
 
 new CronJob('0 * * * *', async () => {
+  const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
   try {
     const buffer = await random_squirrel_buffer();
     const attachment = new Discord.AttachmentBuilder(buffer, { name: 'squirrel.jpeg' });
