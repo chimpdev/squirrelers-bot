@@ -1,6 +1,6 @@
 {
   "name": "squirrelers",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "A Discord bot for squirrel lovers.",
   "main": "index.js",
   "scripts": {
