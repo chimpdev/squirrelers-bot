@@ -12,7 +12,7 @@ global.logger = logger;
 
 startClient();
 
-mongoose.connect(process.env.MONGO_URI).then(() => logger.info('Connected to database')).catch(err => logger.error(err));
+mongoose.connect(process.env.MONGO_URI, { dbName: 'Bot' }).then(() => logger.info('Connected to database')).catch(err => logger.error(err));
 
 new CronJob('0 * * * *', async () => {
   const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
