@@ -5,7 +5,7 @@ export default {
     .setName('drop')
     .setDescription('Manage the squirrel picture dropping.')
     .addSubcommand(subcommand => subcommand.setName('set').setDescription('Set the channel to drop squirrel pictures in.')
-      .addChannelOption(option => option.setName('channel').setDescription('The channel to drop squirrel pictures in.')))
+      .addChannelOption(option => option.setName('channel').setDescription('The channel to drop squirrel pictures in.').setRequired(true)))
     .addSubcommand(subcommand => subcommand.setName('stop').setDescription('Stop dropping squirrel pictures.'))
     .toJSON(),
   execute: async interaction => {
@@ -16,17 +16,11 @@ export default {
       case 'set':
         try {
           const channel = interaction.options.getChannel('channel');
-          if (!channel) {
-            await database.delete(`drop-squirrel.${interaction.guild.id}`);
-            interaction.followUp('I\'ll stop dropping squirrel pictures.');
-            break;
-          } else {
-            if (![Discord.ChannelType.GuildAnnouncement, Discord.ChannelType.GuildText].includes(channel.type)) return interaction.followUp('I can only drop squirrel pictures in text channels.');
+          if (![Discord.ChannelType.GuildAnnouncement, Discord.ChannelType.GuildText].includes(channel.type)) return interaction.followUp('I can only drop squirrel pictures in text channels.');
 
-            await database.set(`drop-squirrel.${interaction.guild.id}`, channel.id);
-            interaction.followUp(`I'll drop squirrel pictures in ${channel} every 1 hour.`);
-            break;
-          }
+          await database.set(`drop-squirrel.${interaction.guild.id}`, channel.id);
+          interaction.followUp(`I'll drop squirrel pictures in ${channel} every 1 hour.`);
+          break;
         } catch (error) {
           logger.error(error);
           interaction.followUp('There was an error trying to set the channel D:');
