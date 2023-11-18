@@ -1,4 +1,5 @@
 import Discord from 'discord.js'
+import Drop from '../schemas/Drop.js';
 
 export default {
   data: new Discord.SlashCommandBuilder()
@@ -18,19 +19,20 @@ export default {
           const channel = interaction.options.getChannel('channel');
           if (![Discord.ChannelType.GuildAnnouncement, Discord.ChannelType.GuildText].includes(channel.type)) return interaction.followUp('I can only drop squirrel pictures in text channels.');
 
-          await database.set(`drop-squirrel.${interaction.guild.id}`, channel.id);
+          await Drop.findOneAndUpdate({ _id: interaction.guild.id }, { channel: channel.id }, { upsert: true });
           interaction.followUp(`I'll drop squirrel pictures in ${channel} every 1 hour.`);
           break;
         } catch (error) {
-          logger.error(error);
+          logger.error('There was an error trying to set the channel D:');
+          logger.error(error.stack);
           interaction.followUp('There was an error trying to set the channel D:');
           break;
         };
       case 'stop':
-        const channel = await database.get(`drop-squirrel.${interaction.guild.id}`);
-        if (!channel) return interaction.followUp('I\'m not dropping squirrel pictures in this server.');
+        const data = await Drop.findOne({ _id: interaction.guild.id });
+        if (!data) return interaction.followUp('I\'m not dropping squirrel pictures in this server.');
 
-        await database.delete(`drop-squirrel.${interaction.guild.id}`);
+        await Drop.deleteOne({ _id: interaction.guild.id });
         interaction.followUp('I\'ll stop dropping squirrel pictures.');
         break;
     };
