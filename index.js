@@ -1,7 +1,7 @@
 import { CronJob } from 'cron';
 import Discord from 'discord.js';
 import dotenv from 'dotenv';
-import { Database } from "quickmongo";
+import { Database } from 'quickmongo';
 import logger from './utils/logger.js';
 import random_squirrel_buffer from './utils/random_squirrel_buffer.js';
 import startClient from './client.js';
@@ -38,6 +38,7 @@ new CronJob('0 * * * *', async () => {
       await wait(2500);
     }));
   } catch (error) {
-    logger.error(`There was an error trying to drop a squirrel picture: ${error}`);
+    logger.error(`There was an error trying to drop a squirrel picture`);
+    logger.error(error.stack);
   }
 }, null, true);
