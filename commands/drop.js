@@ -13,28 +13,26 @@ export default {
     await interaction.deferReply();
 
     const subcommand = interaction.options.getSubcommand();
-    switch (subcommand) {
-      case 'set':
-        try {
-          const channel = interaction.options.getChannel('channel');
-          if (![Discord.ChannelType.GuildAnnouncement, Discord.ChannelType.GuildText].includes(channel.type)) return interaction.followUp('I can only drop squirrel pictures in text channels.');
+    if (subcommand === 'set') {
+      try {
+        const channel = interaction.options.getChannel('channel');
+        if (![Discord.ChannelType.GuildAnnouncement, Discord.ChannelType.GuildText].includes(channel.type)) return interaction.followUp('I can only drop squirrel pictures in text channels.');
 
-          await Drop.findOneAndUpdate({ _id: interaction.guild.id }, { channel: channel.id }, { upsert: true });
-          interaction.followUp(`I'll drop squirrel pictures in ${channel} every 1 hour.`);
-          break;
-        } catch (error) {
-          logger.error('There was an error trying to set the channel D:');
-          logger.error(error.stack);
-          interaction.followUp('There was an error trying to set the channel D:');
-          break;
-        };
-      case 'stop':
-        const data = await Drop.findOne({ _id: interaction.guild.id });
-        if (!data) return interaction.followUp('I\'m not dropping squirrel pictures in this server.');
+        await Drop.findOneAndUpdate({ _id: interaction.guild.id }, { channel: channel.id }, { upsert: true });
+        return interaction.followUp(`I'll drop squirrel pictures in ${channel} every 1 hour.`);
+      } catch (error) {
+        logger.error('There was an error trying to set the channel D:');
+        logger.error(error.stack);
+        return interaction.followUp('There was an error trying to set the channel D:');
+      }
+    };
 
-        await Drop.deleteOne({ _id: interaction.guild.id });
-        interaction.followUp('I\'ll stop dropping squirrel pictures.');
-        break;
+    if (subcommand === 'stop') {
+      const data = await Drop.findOne({ _id: interaction.guild.id });
+      if (!data) return interaction.followUp('I\'m not dropping squirrel pictures in this server.');
+
+      await Drop.deleteOne({ _id: interaction.guild.id });
+      return interaction.followUp('I\'ll stop dropping squirrel pictures.');
     };
   }
 }
