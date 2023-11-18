@@ -23,7 +23,7 @@ export default function () {
     if (!interaction.isCommand()) return;
 
     const command = interaction.commandName;
-    logger.info(`Received command ${command} from ${interaction.user.tag}`);
+    logger.info(`Received command ${command} from ${interaction.user.tag} (${client.ws.ping} ms)`);
 
     if (command === 'squeak') return squeakCommand.execute(interaction);
     if (command === 'drop') return dropCommand.execute(interaction);
