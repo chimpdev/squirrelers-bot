@@ -6,6 +6,7 @@ export default {
     name: 'squeak',
     description: 'Squeak!'
   },
+  cooldown: 30,
   execute: async interaction => {
     await interaction.deferReply();
 

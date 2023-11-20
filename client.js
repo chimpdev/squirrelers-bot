@@ -20,13 +20,20 @@ export default function () {
     }
   });
 
+  const cooldowns = new Discord.Collection();
+
   client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
 
     const command = interaction.commandName;
     logger.info(`Received command ${command} from ${interaction.user.tag} (${interaction.client.ws.ping} ms)`);
 
-    if (command === 'squeak') return squeakCommand.execute(interaction);
+    if (command === 'squeak') {
+      if ((cooldowns.get(interaction.user.id) || Date.now()) > Date.now()) return interaction.reply({ content: `You're on cooldown! Please wait **${((cooldowns.get(interaction.user.id) - Date.now()) / 1000).toFixed(2)}** seconds.`, ephemeral: true });
+
+      cooldowns.set(interaction.user.id, Date.now() + (squeakCommand.cooldown * 1000));
+      return squeakCommand.execute(interaction);
+    };
     if (command === 'drop') return dropCommand.execute(interaction);
     if (command === 'ping') return pingCommand.execute(interaction);
   });
