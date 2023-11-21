@@ -7,6 +7,8 @@ export default {
   },
   cooldown: 5,
   execute: async interaction => {
+    await interaction.deferReply();
+
     const embed = new Discord.EmbedBuilder()
       .setColor('Random')
       .setAuthor({ name: 'Help', iconURL: client.user.displayAvatarURL() })
@@ -33,6 +35,6 @@ export default {
       return fields;
     }, []));
 
-    return interaction.reply({ embeds: [embed] });
+    return interaction.followUp({ embeds: [embed] });
   }
 }
