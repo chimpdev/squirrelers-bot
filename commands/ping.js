@@ -3,6 +3,7 @@ export default {
     name: 'ping',
     description: 'Calculate how long it takes for the bot to respond.'
   },
+  cooldown: 5,
   execute: async interaction => {
     const sent = await interaction.reply({ content: 'Calculating...', fetchReply: true });
     const time = sent.createdTimestamp - interaction.createdTimestamp;
