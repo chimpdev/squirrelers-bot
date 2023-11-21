@@ -20,13 +20,13 @@ export default {
         command.options.filter(option => option.type === 1).forEach(option => {
           fields.push({
             name: `</${command.name} ${option.name}:${command.id}>`,
-            value: option.description
+            value: `- ${option.description}`
           });
         });
       } else {
         fields.push({
           name: `</${command.name}:${command.id}>`,
-          value: command.description
+          value: `- ${command.description}`
         });
       };
 
