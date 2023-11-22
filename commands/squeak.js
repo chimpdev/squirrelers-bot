@@ -1,5 +1,5 @@
 import Discord from 'discord.js'
-import random_squirrel_buffer from '../utils/random_squirrel_buffer.js';
+import random_squirrel_picture from '../utils/random_squirrel_picture.js';
 
 export default {
   data: {
@@ -11,7 +11,7 @@ export default {
     await interaction.deferReply();
 
     try {
-      const buffer = await random_squirrel_buffer();
+      const buffer = (await random_squirrel_picture()).buffer;
       const attachment = new Discord.AttachmentBuilder(buffer, { name: 'squirrel.jpeg' });
 
       return interaction.followUp({ files: [attachment] });
