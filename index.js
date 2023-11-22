@@ -2,7 +2,7 @@ import { CronJob } from 'cron';
 import Discord from 'discord.js';
 import dotenv from 'dotenv';
 import logger from './utils/logger.js';
-import random_squirrel_buffer from './utils/random_squirrel_buffer.js';
+import random_squirrel_picture from './utils/random_squirrel_picture.js';
 import startClient from './client.js';
 import mongoose from 'mongoose';
 import Drop from './schemas/Drop.js';
@@ -18,7 +18,7 @@ new CronJob('0 * * * *', async () => {
   const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   try {
-    const buffer = await random_squirrel_buffer();
+    const buffer = (await random_squirrel_picture()).buffer;
     const attachment = new Discord.AttachmentBuilder(buffer, { name: 'squirrel.jpeg' });
 
     const drops = await Drop.find();
@@ -37,4 +37,10 @@ new CronJob('0 * * * *', async () => {
     logger.error(`There was an error trying to drop a squirrel picture`);
     logger.error(error.stack);
   }
+}, null, true);
+
+new CronJob('0 0 * * *', async () => {
+  const newAvatarURL = (await random_squirrel_picture()).url;
+  logger.info(`Changing avatar to ${newAvatarURL}`);
+  client.user.setAvatar(newAvatarURL).catch(err => logger.error(err));
 }, null, true);
