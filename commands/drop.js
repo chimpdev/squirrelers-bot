@@ -8,8 +8,8 @@ export default {
     .addSubcommand(subcommand => subcommand.setName('set').setDescription('Set the channel to drop squirrel pictures in.')
       .addChannelOption(option => option.setName('channel').setDescription('The channel to drop squirrel pictures in.').setRequired(true)))
     .addSubcommand(subcommand => subcommand.setName('stop').setDescription('Stop dropping squirrel pictures.'))
-    .toJSON()
-    .setDMPermission(false),
+    .setDMPermission(false)
+    .toJSON(),
   execute: async interaction => {
     if (!interaction.member.permissions.has('ManageGuild')) return interaction.reply({ content: 'You need the Manage Server permission to use this command.', ephemeral: true });
 
