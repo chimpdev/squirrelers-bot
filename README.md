@@ -8,7 +8,7 @@ Go to [this link](https://discord.com/api/oauth2/authorize?client_id=11609051846
 
 ## 🖥️ Hosting
 
-We are hosting Squirrelers bot on our own servers. Bot will be online 24/7. If you want to host the bot on your own server, you can follow the steps below.
+~~We are hosting Squirrelers bot on our own servers. Bot will be online 24/7.~~ We currently don't have enough resources to host the bot. If you want to host the bot on your own server, you can follow the steps below.
 
 ### Prerequisites
 
